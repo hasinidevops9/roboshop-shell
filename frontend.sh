@@ -1,3 +1,4 @@
+#installing nginx
 dnf install -y nginx
 
 cp nginx.conf /etc/nginx/nginx.conf
