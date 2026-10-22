@@ -23,22 +23,22 @@ echo $?
 cd /app
 
 echo -e \\e[36m Extracting ${app_name} code \\e[0m
-unzip /tmp/${app_name}.zip
+unzip /tmp/${app_name}.zip &>>$log_file
 echo $?
 
 echo -e \\e[36m Compile app code \\e[0m
-npm install --production
+npm install --production &>>$log_file
 echo $?
 
 echo -e \\e[36m Setup permissions to app code \\e[0m
-chown -R appuser:appuser /app
-chmod o-rwx /app -R
+chown -R appuser:appuser /app &>>$log_file
+chmod o-rwx /app -R &>>$log_file
 echo $?
 
 echo -e \\e[36m Start service \\e[0m
-systemctl daemon-reload
-systemctl enable ${app_name}
-systemctl restart ${app_name}
+systemctl daemon-reload &>>$log_file
+systemctl enable ${app_name} &>>$log_file
+systemctl restart ${app_name} &>>$log_file
 echo $?
 
 }
